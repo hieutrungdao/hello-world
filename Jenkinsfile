@@ -7,7 +7,7 @@ pipeline {
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t hieutrungdao/test:$BUILD_NUMBER .'
+                sh 'docker build -t hieutrungdao/test:latest .'
             }
         }
         stage('login to dockerhub') {
@@ -17,7 +17,7 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push hieutrungdao/test:$BUILD_NUMBER'
+                sh 'docker push hieutrungdao/test:latest'
             }
         }
 }
