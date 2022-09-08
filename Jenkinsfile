@@ -1,29 +1,34 @@
-node {
-    def app
-
-    stage('Clone repository') {
-      
-        checkout scm
+pipeline {
+    agent any 
+    environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
-
-    stage('Build image') {
-  
-       app = docker.build("hieutrungdao/test")
-    }
-
-    stage('Test image') {
-  
-
-        app.inside {
-            sh 'echo "Tests passed"'
+    stages { 
+        stage('SCM Checkout') {
+            steps{
+            git 'https://github.com/hieutrungdao/hello-world.git'
+            }
         }
-    }
 
-    stage('Push image') {
-        
-        docker.withRegistry('https://registry.hub.docker.com', 'git') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+        stage('Build docker image') {
+            steps {  
+                sh 'docker build -t hieutrungdao/test:$BUILD_NUMBER .'
+            }
+        }
+        stage('login to dockerhub') {
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
+        stage('push image') {
+            steps{
+                sh 'docker push hieutrungdao/test:$BUILD_NUMBER'
+            }
+        }
+}
+post {
+        always {
+            sh 'docker logout'
         }
     }
 }
