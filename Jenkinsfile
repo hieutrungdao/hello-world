@@ -6,7 +6,10 @@ pipeline {
     stages { 
         stage('SCM Checkout') {
             steps{
-            git 'https://github.com/hieutrungdao/hello-world.git'
+                git 'https://github.com/hieutrungdao/hello-world.git'
+            }
+            steps{
+                sh 'ls'
             }
         }
 
