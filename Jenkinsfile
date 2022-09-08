@@ -8,9 +8,6 @@ pipeline {
             steps{
                 git 'https://github.com/hieutrungdao/hello-world.git'
             }
-            steps{
-                sh 'ls'
-            }
         }
         stage('ls') {
             steps{
