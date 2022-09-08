@@ -1,2 +1,2 @@
 while(True):
-  print("Hello Vietnam")
+  print("Hello")
