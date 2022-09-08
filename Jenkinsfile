@@ -4,16 +4,6 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages { 
-        stage('SCM Checkout') {
-            steps{
-                git 'https://github.com/hieutrungdao/hello-world.git'
-            }
-        }
-        stage('ls') {
-            steps{
-                sh 'ls'
-            }
-        }
 
         stage('Build docker image') {
             steps {  
