@@ -12,6 +12,11 @@ pipeline {
                 sh 'ls'
             }
         }
+        stage('ls') {
+            steps{
+                sh 'ls'
+            }
+        }
 
         stage('Build docker image') {
             steps {  
