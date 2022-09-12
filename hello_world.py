@@ -27,7 +27,7 @@ app.add_middleware(
 
 @app.get("/") 
 async def root(): 
-    return {"message": "Hallo Haaaaaaaaa"}
+    return {"message": "Hallo Beo"}
 
 
 @app.post("/input")
