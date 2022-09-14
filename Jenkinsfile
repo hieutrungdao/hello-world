@@ -5,19 +5,19 @@ pipeline {
     }
     stages { 
 
-        stage('Build docker image') {
-            steps {  
-                sh 'docker build -t aiccontainerregistry.azurecr.io/soundai/test_jenkins:latest .'
-            }
-        }
         stage('login to dockerhub') {
             steps{
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login aiccontainerregistry.azurecr.io -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
+        stage('Buildx') {
+            steps {  
+                sh 'docker buildx create --use --name multiarch'
+            }
+        }
         stage('push image') {
             steps{
-                sh 'docker push aiccontainerregistry.azurecr.io/soundai/test_jenkins:latest'
+                sh 'docker buildx build --platform linux/arm64 -t aiccontainerregistry.azurecr.io/soundai/test_jenkins -o type=registry .'
             }
         }
 }
