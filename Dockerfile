@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM --platform=linux/arm64 python:3.8
 
 WORKDIR /usr/src/app
         
