@@ -12,7 +12,7 @@ from pprint import pprint
 
 
 #create app
-app = FastAPI(title='VisualAI')
+app = FastAPI(title='Test')
 
 origins = ["*"]
 
@@ -27,7 +27,7 @@ app.add_middleware(
 
 @app.get("/") 
 async def root(): 
-    return {"message": "Hallo Bello"}
+    return {"message": "Hallo Haaa"}
 
 
 @app.post("/input")
