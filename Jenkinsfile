@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Buildx') {
             steps {  
-                sh 'docker buildx create --use --name multiarch'
+                sh 'docker buildx create --use --name multiarch-hello'
             }
         }
         stage('push image') {
