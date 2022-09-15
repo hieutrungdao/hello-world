@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('azurecontainerregistry')
+        DOCKERHUB_CREDENTIALS = credentials('aic-cr')
     }
     stages { 
 
